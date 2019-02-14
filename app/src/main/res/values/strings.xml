@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name" translatable="true">Coding Challenge Vox Markets</string>
-    <string name="sort_by_name_menu_item" translatable="true">Sort by name</string>
-    <string name="sort_by_fact_code_menu_item" translatable="true">Sort by fact code</string>
+    <string name="sort_by_name_button_name" translatable="true">Sort by name</string>
+    <string name="sort_by_fact_button_name" translatable="true">Sort by fact code</string>
 </resources>

@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,6 +31,12 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.exchange_recyclerView)
     RecyclerView recyclerView;
 
+    @BindView(R.id.sort_name_button)
+    Button sortByNameButton;
+
+    @BindView(R.id.sort_code_button)
+    Button sortByCodeButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,26 +51,15 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         updateExchangeListView(sortMode);
 
-    }
+        sortByCodeButton.setOnClickListener(v -> {
+            sortMode=1;
+            updateExchangeListView(sortMode);
+        });
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.sort_name_menu_item:
-                sortMode=0;
-                break;
-            case R.id.sort_code_menu_item:
-                sortMode=1;
-                break;
-        }
-        updateExchangeListView(sortMode);
-        return super.onOptionsItemSelected(item);
+        sortByNameButton.setOnClickListener(v -> {
+            sortMode=0;
+            updateExchangeListView(sortMode);
+        });
     }
 
     private void updateExchangeListView(int sortMode) {
@@ -79,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
                             exchanges.add(exchange);
                         }
                     }
-
                     switch (sortMode){
                         case 0:
                             Collections.sort(exchanges, (exchange1, exchange2) -> exchange1.getExchangeName().compareTo(exchange2.getExchangeName()));
