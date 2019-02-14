@@ -1,14 +1,18 @@
 package com.example.codingchallengevoxmarkets;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Exchange {
 
+    @SerializedName("exchangeName")
+    @Expose
     private String exchangeName;
+
+    @SerializedName("exchangeFactSetCode")
+    @Expose
     private String exchangeFactSetCode;
 
-    public Exchange(String exchangeName, String exchangeFactSetCode) {
-        this.exchangeName = exchangeName;
-        this.exchangeFactSetCode = exchangeFactSetCode;
-    }
 
     public String getExchangeName() {
         return exchangeName;
