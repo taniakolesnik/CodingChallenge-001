@@ -31,31 +31,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
          ButterKnife.bind(this);
 
-
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new ExchangeRecyclerViewAdapter( this, new ArrayList<>());
         recyclerView.setAdapter(adapter);
-
-        getExchangeList();
+        updateExchangeListView();
 
     }
 
-    private void getExchangeList() {
-
+    private void updateExchangeListView() {
 
         ExchangeApiClient client = ExchangeServiceGenerator.createService(ExchangeApiClient.class);
         Call<List<Exchange>> call = client.getExchangeList();
         call.enqueue(new Callback<List<Exchange>>() {
             @Override
             public void onResponse(Call<List<Exchange>> call, Response<List<Exchange>> response) {
-                ArrayList<Exchange> exchanges;
+                ArrayList<Exchange> exchanges = new ArrayList<>();
                 if (response.body()!=null){
-                    Log.i(TAG, "Callback successful with body NOT empty");
-                    exchanges = (ArrayList)response.body();
+                    for (Exchange exchange : response.body()){
+                        if (exchange.getExchangeFactSetCode()!=null){
+                            exchanges.add(exchange);
+                        }
+                    }
                     adapter.updateAdapter(exchanges);
-                } else {
-                    Log.i(TAG, "Callback successful with body empty");
                 }
             }
 
