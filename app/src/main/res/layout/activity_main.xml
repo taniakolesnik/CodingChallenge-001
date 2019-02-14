@@ -4,26 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context=".MainActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/exchange_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="614dp"
+        android:layout_height="match_parent"
         android:layout_marginBottom="80dp"
+        android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp">
 
     </android.support.v7.widget.RecyclerView>
-
 
     <Button
         android:id="@+id/sort_name_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="48dp"
         android:layout_marginBottom="32dp"
+        android:layout_marginTop="32dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:textAlignment="center"
+        android:padding="8dp"
         android:text="@string/sort_by_name_button_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,9 +39,15 @@
         android:id="@+id/sort_code_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="44dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginTop="32dp"
+        android:padding="8dp"
+        android:textAlignment="center"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
         android:text="@string/sort_by_fact_button_name"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/exchange_recyclerView" />
 

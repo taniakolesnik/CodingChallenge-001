@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         //TODO save selected value in shared preferences
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new ExchangeRecyclerViewAdapter( this, new ArrayList<>());
+        adapter = new ExchangeRecyclerViewAdapter( this, new ArrayList<>(), sortMode);
         recyclerView.setAdapter(adapter);
         updateExchangeListView(sortMode);
 
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                             Collections.sort(exchanges, (exchange1, exchange2) -> exchange1.getExchangeFactSetCode().compareTo(exchange2.getExchangeFactSetCode()));
                             break;
                     }
-                    adapter.updateAdapter(exchanges);
+                    adapter.updateAdapter(exchanges,sortMode);
                 }
             }
 
