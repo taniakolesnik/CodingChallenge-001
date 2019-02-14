@@ -30,6 +30,8 @@ public class ExchangeRecyclerViewAdapter extends RecyclerView.Adapter<ExchangeRe
         notifyDataSetChanged();
     }
 
+
+
     @NonNull
     @Override
     public ExchangeRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
