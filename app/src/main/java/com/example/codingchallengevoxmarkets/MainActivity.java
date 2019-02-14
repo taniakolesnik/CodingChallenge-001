@@ -5,9 +5,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 
 import retrofit2.Call;
@@ -24,6 +21,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getName();
+    private static final String SORT_ORDER_KEY = "sortOder";
 
     private int sortMode;
     private ExchangeRecyclerViewAdapter adapter;
@@ -43,8 +41,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
          ButterKnife.bind(this);
 
-         sortMode = 1; // 0 - name, 1 - code
-        //TODO save selected value in shared preferences
+         if (savedInstanceState!=null){
+             if (savedInstanceState.containsKey(SORT_ORDER_KEY)){
+                 sortMode = savedInstanceState.getInt(SORT_ORDER_KEY);
+             } else sortMode = 1;
+         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new ExchangeRecyclerViewAdapter( this, new ArrayList<>(), sortMode);
@@ -60,6 +61,12 @@ public class MainActivity extends AppCompatActivity {
             sortMode=0;
             updateExchangeListView(sortMode);
         });
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(SORT_ORDER_KEY, sortMode);
     }
 
     private void updateExchangeListView(int sortMode) {
